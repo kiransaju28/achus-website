@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Surprise Preview</title>
+<style>
+  :root{
+    --bg: #1a0029;
+    --accent: #c77dff;
+    --button: #e6ccff;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Brush Script MT', 'Pacifico', cursive;
+    background-color: var(--bg); 
+    color: #f6e6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+  }
+  .screen {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    animation: fade 0.45s ease;
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+  }
+  .active { 
+    display: flex; 
+    align-items:center; 
+    justify-content:center; 
+  }
+  @keyframes fade { 
+    from{ opacity:0; transform: translateY(8px);} 
+    to{ opacity:1; transform: translateY(0);} 
+  }
+  button{
+    padding: 12px 28px;
+    background: var(--button);
+    border:none; 
+    border-radius:12px;
+    font-size:1.2rem;
+    cursor:pointer;
+  }
+
+  .decorations{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    pointer-events:none;
+    z-index:1;
+  }
+  .decorations span{
+    position:absolute;
+    animation: float 6s infinite ease-in-out;
+    opacity:0.9;
+  }
+  @keyframes float{
+    0%{transform:translateY(0);} 50%{transform:translateY(-22px);} 100%{transform:translateY(0);} }
+
+  .sparkle{
+    position:absolute;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,0.6));
+    box-shadow:0 0 14px 8px rgba(255,255,255,0.95);
+    animation:sparkle 1s infinite ease-in-out;
+    z-index:6;
+    pointer-events: none;
+  }
+  @keyframes sparkle{
+    0%{transform:scale(0.6);opacity:0.6;}
+    50%{transform:scale(2.2);opacity:1;}
+    100%{transform:scale(0.6);opacity:0.6;}
+  }
+
+  #final h1, #final h2{
+    position:relative;
+    z-index:4;
+    margin:0.2em 0;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="s1" class="screen active">
+  <h1>𝔾𝕦𝕖𝕤𝕤𝕤 𝕨𝕙𝕒𝕥 𝕕𝕒𝕪 𝕚𝕥 𝕚𝕤!</h1>
+  <button onclick="next('s2')">Next</button>
+</div>
+
+<div id="s2" class="screen">
+  <h1>𝔸 𝕣𝕖𝕒𝕝𝕝𝕪, 𝕣𝕖𝕒𝕒𝕝𝕝𝕝𝕪𝕪𝕪 𝕤𝕡𝕖𝕔𝕚𝕒𝕝 𝕕𝕒𝕪, 𝕣𝕚𝕘𝕙𝕥? 😋</h1>
+  <button onclick="next('s3')">Next</button>
+</div>
+
+<div id="s3" class="screen">
+  <h1>𝔽𝕠𝕣 𝕤𝕠𝕞𝕖𝕠𝕟𝕖 𝕘𝕣𝕠𝕨𝕚𝕟𝕘 𝕤𝕠𝕠 𝕠𝕝𝕕 🤭</h1>
+  <button onclick="next('s4')">Next</button>
+</div>
+
+<div id="s4" class="screen">
+  <h1>𝕆𝕜 𝕤𝕠 𝕓𝕖𝕗𝕠𝕣𝕖 𝕪𝕠𝕦 𝕘𝕠 𝕒𝕟𝕪 𝕗𝕦𝕣𝕥𝕙𝕦𝕣... 𝕥𝕙𝕖𝕣𝕖'𝕤 𝕒 𝕔𝕙𝕒𝕝𝕝𝕖𝕟𝕘𝕖! 👀</h1>
+  <button onclick="next('quiz')">Next</button>
+</div>
+
+<div id="quiz" class="screen">
+  <h1>𝕨𝕙𝕒𝕥'𝕤 4𝑥 - 5 = 7 😈</h1>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
+    <button onclick="next('correct')">3</button>
+    <button onclick="next('wrong')">12</button>
+  </div>
+</div>
+
+<div id="wrong" class="screen">
+  <h1>...</h1>
+  <button onclick="next('wrong2')">Next</button>
+</div>
+
+<div id="wrong2" class="screen">
+  <h1>𝕐𝕠𝕦'𝕝𝕝 𝕘𝕖𝕥 𝕚𝕥 𝕣𝕚𝕘𝕙𝕥 𝕟𝕖𝕩𝕥 𝕥𝕚𝕞𝕖 ☺️</h1>
+</div>
+
+<div id="correct" class="screen">
+  <h1>𝕎𝕆𝔸ℍ? 𝕐𝕆𝕌 𝔾𝕆𝕋 𝕀𝕋? 𝕀'𝕄 𝕊𝕆 ℙℝ𝕆𝕌𝔻🤩🥳</h1>
+  <button onclick="next('correct2')">Next</button>
+</div>
+
+<div id="correct2" class="screen">
+  <h1>𝔸𝕟𝕪𝕨𝕒𝕒𝕒𝕪𝕤𝕤𝕤...</h1>
+  <button onclick="next('excited')">Next</button>
+</div>
+
+<div id="excited" class="screen">
+  <h1>𝔸𝕣𝕖 𝕪𝕠𝕦 𝕖𝕩𝕚𝕥𝕖𝕕?🤩</h1>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
+    <button onclick="next('yay')">Yes</button>
+    <button onclick="next('nope')">No</button>
+  </div>
+</div>
+
+<div id="yay" class="screen">
+  <h1>𝕐𝔸𝕐𝔸𝕐𝔸𝕐𝔸𝕐</h1>
+  <button onclick="next('final')">Next</button>
+</div>
+
+<div id="nope" class="screen">
+  <h1>𝕐𝔼𝕊 𝕐𝕆𝕌 𝔸ℝ𝔼 👺</h1>
+  <button onclick="next('final')">Next</button>
+</div>
+
+<div id="final" class="screen">
+  <h1 style="font-size:4rem;font-weight:bold;">𝓗𝓐𝓟𝓟𝓨 𝓑𝓘𝓡𝓣𝓗𝓓𝓐𝓨 𝐊𝐀𝐘𝐋𝐄𝐈𝐆𝐇!</h1>
+  <h2>I LOVE YOUUUUUUU</h2>
+  <div class="decorations" id="decor"></div>
+</div>
+
+<script>
+function next(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('active');
+
+  if (id === 'final'){
+    spawnDecor();
+    spawnSparkles();
+    spawnExtraSparkles();
+  }
+}
+
+function spawnDecor(){
+  const decor = document.getElementById('decor');
+  decor.innerHTML = '';
+  const icons = ['🌸','🌼','💐','💖','💗','💞','💘','💝','✨','⭐'];
+  for (let i=0;i<90;i++){
+    const span = document.createElement('span');
+    span.textContent = icons[Math.floor(Math.random()*icons.length)];
+    span.style.top = Math.random()*100 + '%';
+    span.style.left = Math.random()*100 + '%';
+    span.style.fontSize = (18 + Math.random()*28) + 'px';
+    decor.appendChild(span);
+  }
+}
+
+function spawnSparkles(){
+  document.querySelectorAll('.sparkle').forEach(e=>e.remove());
+  for (let i=0;i<20;i++){
+    const s = document.createElement('div');
+    s.className='sparkle';
+    s.style.top=Math.random()*100+'%';
+    s.style.left=Math.random()*100+'%';
+    document.body.appendChild(s);
+  }
+}
+
+function spawnExtraSparkles(){
+  for (let i=0;i<30;i++){
+    const s = document.createElement('div');
+    s.className='sparkle';
+    s.style.top=Math.random()*100+'%';
+    s.style.left=Math.random()*100+'%';
+    s.style.width="6px";
+    s.style.height="6px";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
